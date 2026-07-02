@@ -38,10 +38,10 @@ export const workshop = {
   // Các giá trị này CHỈ để hiển thị + tạo QR VietQR.
   // Ngân hàng dùng mã BIN theo chuẩn VietQR (VD Vietcombank = 970436).
   bank: {
-    bankName: "Vietcombank",
-    bin: "970436", // mã ngân hàng chuẩn VietQR
-    accountNumber: "0123456789",
-    accountHolder: "CR STUDIO",
+    bankName: "MB Bank",
+    bin: "970422", // mã ngân hàng chuẩn VietQR (MB Bank)
+    accountNumber: "945657611",
+    accountHolder: "CTY TNHH TRUYEN THONG CR STUDIO",
   },
 
   // --- Tiền tố mã đơn hàng ---
