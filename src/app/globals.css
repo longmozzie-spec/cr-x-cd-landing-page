@@ -232,6 +232,12 @@ h2 span {
   gap: 14px;
   margin-top: 34px;
 }
+.hero-meta {
+  margin-top: 22px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+}
 .scroll-hint {
   position: absolute;
   bottom: 28px;
@@ -437,6 +443,96 @@ h2 span {
   }
 }
 
+/* ===== Hero title (câu dài — nhỏ hơn h1 mặc định) ===== */
+.hero-title {
+  font-size: clamp(34px, 4.6vw, 68px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.04em !important;
+}
+
+/* ===== Diễn giả ===== */
+.speakers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 38px;
+}
+.speaker {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border-radius: 22px;
+  padding: 22px;
+}
+.speaker-avatar {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 900;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #8b5cff);
+}
+.speaker-info h3 {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+.speaker-role {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent2);
+}
+.speaker-topic {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ===== Countdown ===== */
+.countdown-card {
+  justify-content: center;
+  gap: 22px;
+}
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.cd-cell {
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  padding: 16px 6px;
+  text-align: center;
+}
+.cd-cell b {
+  display: block;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.cd-cell span {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.countdown-done {
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+  color: var(--accent2);
+}
+
 /* ===== Mobile ===== */
 @media (max-width: 900px) {
   .topbar {
@@ -484,6 +580,9 @@ h2 span {
   }
   .audience-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .speakers {
+    grid-template-columns: 1fr;
   }
   .hero-actions {
     flex-direction: column;
