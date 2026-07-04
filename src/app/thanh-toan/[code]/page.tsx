@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { workshop } from "@/config/workshop";
 import { transferContent, vietQrUrl } from "@/lib/payment";
@@ -31,9 +32,7 @@ export default async function ThanhToanPage({
       <div className="noise" />
       <header className="topbar">
         <Link href="/" className="brand">
-          <span>
-            CR Studio <b>×</b> CD Media
-          </span>
+          <Image src="/assets/logo.png" alt={workshop.brand} width={143} height={80} />
         </Link>
         <Link className="nav-cta" href="/">
           ← Trang chủ

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { formatVND } from "@/config/workshop";
+import { workshop, formatVND } from "@/config/workshop";
 import type { Registration, RegistrationStatus } from "@/types/registration";
 
 type Filter = "all" | "paid" | "unpaid";
@@ -115,7 +115,7 @@ export function AdminDashboard({ rows }: { rows: Registration[] }) {
     <div className="adm-page">
       <header className="adm-top">
         <div>
-          <p className="eyebrow">CR Studio × CD Media</p>
+          <p className="eyebrow">{workshop.brand}</p>
           <h1>Quản lý đăng ký workshop</h1>
         </div>
         <button className="adm-logout" onClick={logout}>

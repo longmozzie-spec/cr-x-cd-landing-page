@@ -92,8 +92,8 @@ a {
   letter-spacing: -0.03em;
 }
 .brand img {
-  width: 42px;
-  height: auto;
+  height: 46px;
+  width: auto;
 }
 .brand b {
   color: var(--accent);

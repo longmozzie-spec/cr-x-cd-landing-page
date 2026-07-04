@@ -12,10 +12,7 @@ export default function Home() {
 
       <header className="topbar">
         <Link href="#slide-1" className="brand" aria-label={workshop.brand}>
-          <Image src="/assets/logo.png" alt="CR logo" width={42} height={42} />
-          <span>
-            CD Media <b>×</b> CR Media
-          </span>
+          <Image src="/assets/logo.png" alt={workshop.brand} width={165} height={92} priority />
         </Link>
         <nav className="desktop-nav">
           <Link href="#slide-2">Ý nghĩa</Link>
