@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { BEAM_HUE_EVENT, DEFAULT_THEME } from "@/config/theme";
 
 /**
  * Nền beam động — thay cho lớp noise cũ.
@@ -16,14 +17,19 @@ interface Beam {
   angle: number;
   speed: number;
   opacity: number;
-  hue: number;
+  hueOffset: number;
   pulse: number;
   pulseSpeed: number;
 }
 
-// Dải màu beam (HSL hue). 8–45 = đỏ→cam→hổ phách, hợp tông brand.
-const HUE_BASE = 8;
-const HUE_RANGE = 38;
+// Mỗi beam lệch màu ngẫu nhiên quanh hue gốc (để dải màu có chiều sâu).
+const HUE_SPREAD = 38;
+
+/** Nội suy hue theo đường vòng ngắn nhất (0–360). */
+function lerpHue(current: number, target: number, t: number): number {
+  const diff = ((target - current + 540) % 360) - 180;
+  return current + diff * t;
+}
 
 function createBeam(width: number, height: number): Beam {
   const angle = -35 + Math.random() * 10;
@@ -35,7 +41,7 @@ function createBeam(width: number, height: number): Beam {
     angle,
     speed: 0.6 + Math.random() * 1.2,
     opacity: 0.12 + Math.random() * 0.16,
-    hue: HUE_BASE + Math.random() * HUE_RANGE,
+    hueOffset: Math.random() * HUE_SPREAD,
     pulse: Math.random() * Math.PI * 2,
     pulseSpeed: 0.02 + Math.random() * 0.03,
   };
@@ -49,6 +55,8 @@ export function BeamsBackground({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const beamsRef = useRef<Beam[]>([]);
   const rafRef = useRef<number>(0);
+  const baseHueRef = useRef<number>(DEFAULT_THEME.hue); // hue hiện tại
+  const targetHueRef = useRef<number>(DEFAULT_THEME.hue); // hue mục tiêu (theo slide)
   const MINIMUM_BEAMS = 20;
 
   const opacityMap = { subtle: 0.7, medium: 0.85, strong: 1 };
@@ -58,6 +66,15 @@ export function BeamsBackground({
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+
+    // Nhận tín hiệu đổi tông màu từ DeckController (theo slide)
+    const onHue = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail && typeof detail.hue === "number") {
+        targetHueRef.current = detail.hue;
+      }
+    };
+    window.addEventListener(BEAM_HUE_EVENT, onHue);
 
     // Tôn trọng người dùng tắt hiệu ứng chuyển động
     const reduced = window.matchMedia(
@@ -92,7 +109,7 @@ export function BeamsBackground({
         column * spacing + spacing / 2 + (Math.random() - 0.5) * spacing * 0.5;
       beam.width = 100 + Math.random() * 100;
       beam.speed = 0.5 + Math.random() * 0.4;
-      beam.hue = HUE_BASE + (index * HUE_RANGE) / total;
+      beam.hueOffset = (index * HUE_SPREAD) / total;
       beam.opacity = 0.2 + Math.random() * 0.1;
       return beam;
     }
@@ -105,13 +122,14 @@ export function BeamsBackground({
         beam.opacity *
         (0.8 + Math.sin(beam.pulse) * 0.2) *
         opacityMap[intensity];
+      const hue = baseHueRef.current + beam.hueOffset;
       const g = c.createLinearGradient(0, 0, 0, beam.length);
-      g.addColorStop(0, `hsla(${beam.hue}, 85%, 60%, 0)`);
-      g.addColorStop(0.1, `hsla(${beam.hue}, 85%, 60%, ${po * 0.5})`);
-      g.addColorStop(0.4, `hsla(${beam.hue}, 85%, 60%, ${po})`);
-      g.addColorStop(0.6, `hsla(${beam.hue}, 85%, 60%, ${po})`);
-      g.addColorStop(0.9, `hsla(${beam.hue}, 85%, 60%, ${po * 0.5})`);
-      g.addColorStop(1, `hsla(${beam.hue}, 85%, 60%, 0)`);
+      g.addColorStop(0, `hsla(${hue}, 85%, 60%, 0)`);
+      g.addColorStop(0.1, `hsla(${hue}, 85%, 60%, ${po * 0.5})`);
+      g.addColorStop(0.4, `hsla(${hue}, 85%, 60%, ${po})`);
+      g.addColorStop(0.6, `hsla(${hue}, 85%, 60%, ${po})`);
+      g.addColorStop(0.9, `hsla(${hue}, 85%, 60%, ${po * 0.5})`);
+      g.addColorStop(1, `hsla(${hue}, 85%, 60%, 0)`);
       c.fillStyle = g;
       c.fillRect(-beam.width / 2, 0, beam.width, beam.length);
       c.restore();
@@ -119,6 +137,12 @@ export function BeamsBackground({
 
     function frame() {
       if (!canvas || !ctx) return;
+      // chuyển màu mượt về hue mục tiêu (theo slide)
+      baseHueRef.current = lerpHue(
+        baseHueRef.current,
+        targetHueRef.current,
+        0.05
+      );
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.filter = "blur(35px)";
       const total = beamsRef.current.length;
@@ -141,6 +165,7 @@ export function BeamsBackground({
 
     return () => {
       window.removeEventListener("resize", updateSize);
+      window.removeEventListener(BEAM_HUE_EVENT, onHue);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [intensity]);

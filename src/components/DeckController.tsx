@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { themeMap, DEFAULT_THEME, BEAM_HUE_EVENT } from "@/config/theme";
 
 /**
  * Điều khiển deck: cursor glow, nav dots active, reveal-on-scroll,
@@ -31,15 +32,12 @@ export function DeckController() {
             entry.target
               .querySelectorAll(".reveal")
               .forEach((el) => el.classList.add("show"));
-            document.documentElement.style.setProperty(
-              "--accent",
-              index === 2
-                ? "#2b8cff"
-                : index === 3
-                ? "#8b5cff"
-                : index === 4
-                ? "#ff9a22"
-                : "#ff2b2b"
+            const theme =
+              (entry.target as HTMLElement).dataset.theme || "red";
+            const { accent, hue } = themeMap[theme] || DEFAULT_THEME;
+            document.documentElement.style.setProperty("--accent", accent);
+            window.dispatchEvent(
+              new CustomEvent(BEAM_HUE_EVENT, { detail: { hue } })
             );
           }
         });
