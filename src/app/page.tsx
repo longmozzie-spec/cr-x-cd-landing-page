@@ -7,7 +7,6 @@ import { Countdown } from "@/components/Countdown";
 export default function Home() {
   return (
     <>
-      <div className="noise" />
       <div className="cursor-glow" aria-hidden />
 
       <header className="topbar">

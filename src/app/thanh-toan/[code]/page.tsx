@@ -29,7 +29,6 @@ export default async function ThanhToanPage({
 
   return (
     <div className="pay-page">
-      <div className="noise" />
       <header className="topbar">
         <Link href="/" className="brand">
           <Image src="/assets/logo.png" alt={workshop.brand} width={143} height={80} />

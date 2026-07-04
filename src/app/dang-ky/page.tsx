@@ -46,7 +46,6 @@ export default function DangKyForm() {
 
   return (
     <div className="reg-page">
-      <div className="noise" />
       <header className="topbar">
         <Link href="/" className="brand">
           <Image src="/assets/logo.png" alt={workshop.brand} width={143} height={80} />
