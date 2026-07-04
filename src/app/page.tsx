@@ -3,10 +3,12 @@ import Image from "next/image";
 import { workshop, formatVND } from "@/config/workshop";
 import { DeckController } from "@/components/DeckController";
 import { Countdown } from "@/components/Countdown";
+import { BeamsBackground } from "@/components/BeamsBackground";
 
 export default function Home() {
   return (
     <>
+      <BeamsBackground intensity="medium" />
       <div className="cursor-glow" aria-hidden />
 
       <header className="topbar">

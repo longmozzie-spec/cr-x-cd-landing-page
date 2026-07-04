@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { workshop, formatVND } from "@/config/workshop";
+import { BeamsBackground } from "@/components/BeamsBackground";
 
 export default function DangKyForm() {
   const router = useRouter();
@@ -46,6 +47,7 @@ export default function DangKyForm() {
 
   return (
     <div className="reg-page">
+      <BeamsBackground intensity="subtle" />
       <header className="topbar">
         <Link href="/" className="brand">
           <Image src="/assets/logo.png" alt={workshop.brand} width={143} height={80} />

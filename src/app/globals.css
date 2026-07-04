@@ -39,6 +39,32 @@ a {
   transition: opacity 0.2s;
 }
 
+/* ===== Beams background (thay noise) ===== */
+.beams {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: #060608;
+  overflow: hidden;
+}
+.beams-canvas {
+  position: absolute;
+  inset: 0;
+  filter: blur(15px);
+}
+.beams-veil {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(50px);
+  background: rgba(6, 6, 8, 0.05);
+  animation: beamVeil 10s ease-in-out infinite;
+}
+@keyframes beamVeil {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.18; }
+}
+
 .btn {
   border: 0;
   border-radius: 999px;
@@ -153,24 +179,19 @@ a {
   display: grid;
   place-items: center;
   padding: 110px 84px 64px;
-  background: radial-gradient(circle at 20% 20%, rgba(255, 43, 43, 0.18), transparent 30%),
-    linear-gradient(135deg, #07070b, #15111a);
+  background: radial-gradient(circle at 20% 20%, rgba(255, 43, 43, 0.16), transparent 34%);
 }
 .slide[data-theme="blue"] {
-  background: radial-gradient(circle at 70% 20%, rgba(0, 132, 255, 0.24), transparent 32%),
-    linear-gradient(135deg, #06101f, #06070b);
+  background: radial-gradient(circle at 70% 20%, rgba(0, 132, 255, 0.2), transparent 36%);
 }
 .slide[data-theme="purple"] {
-  background: radial-gradient(circle at 25% 70%, rgba(123, 64, 255, 0.28), transparent 35%),
-    linear-gradient(135deg, #12091d, #06070b);
+  background: radial-gradient(circle at 25% 70%, rgba(123, 64, 255, 0.24), transparent 38%);
 }
 .slide[data-theme="orange"] {
-  background: radial-gradient(circle at 75% 65%, rgba(255, 176, 0, 0.24), transparent 34%),
-    linear-gradient(135deg, #190d05, #07070b);
+  background: radial-gradient(circle at 75% 65%, rgba(255, 176, 0, 0.2), transparent 38%);
 }
 .slide.final {
-  background: radial-gradient(circle at 70% 20%, rgba(255, 43, 43, 0.28), transparent 36%),
-    linear-gradient(135deg, #0a0507, #190606);
+  background: radial-gradient(circle at 70% 20%, rgba(255, 43, 43, 0.24), transparent 40%);
 }
 .slide-inner {
   width: min(1180px, 100%);
@@ -592,8 +613,8 @@ h2 span {
 .reg-page,
 .pay-page {
   min-height: 100vh;
-  background: radial-gradient(circle at 75% 12%, rgba(255, 43, 43, 0.2), transparent 34%),
-    linear-gradient(135deg, #07070b, #15111a);
+  position: relative;
+  background: radial-gradient(circle at 75% 12%, rgba(255, 43, 43, 0.18), transparent 38%);
 }
 .reg-wrap,
 .pay-wrap {
