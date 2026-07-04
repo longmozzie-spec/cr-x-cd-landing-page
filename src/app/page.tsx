@@ -159,9 +159,13 @@ export default function Home() {
             <div className="speakers reveal delay-1">
               {workshop.speakers.map((sp) => (
                 <div className="speaker" key={sp.name}>
-                  <div className="speaker-avatar" aria-hidden>
-                    {sp.name.split(" ").slice(-1)[0][0]}
-                  </div>
+                  <Image
+                    className="speaker-avatar"
+                    src={sp.photo}
+                    alt={sp.name}
+                    width={116}
+                    height={116}
+                  />
                   <div className="speaker-info">
                     <h3>{sp.name}</h3>
                     <p className="speaker-role">{sp.role}</p>

@@ -487,12 +487,8 @@ h2 span {
   width: 58px;
   height: 58px;
   border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: 26px;
-  font-weight: 900;
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent), #8b5cff);
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.18);
 }
 .speaker-info h3 {
   margin: 0 0 4px;
