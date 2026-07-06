@@ -243,6 +243,11 @@ export default function Home() {
                   Đăng ký ngay
                 </Link>
               </div>
+              <div className="contact-support">
+                <p className="contact-label">Liên hệ hỗ trợ</p>
+                <p><a href="https://www.facebook.com/tho.duongminh.hanhtinhxanh" target="_blank" rel="noopener noreferrer">Facebook: Dương Minh Thơ</a></p>
+                <p><a href="tel:0945657611">SĐT / Zalo: 0945657611</a></p>
+              </div>
             </div>
             <div className="visual reveal delay-1">
               <div className="poster-card countdown-card">

@@ -129,6 +129,12 @@ export function PaymentClient({
         sai nội dung hoặc sai số tiền, vui lòng liên hệ ban tổ chức để được đối
         soát thủ công.
       </p>
+
+      <div className="contact-support">
+        <p className="contact-label">Liên hệ hỗ trợ</p>
+        <p><a href="https://www.facebook.com/tho.duongminh.hanhtinhxanh" target="_blank" rel="noopener noreferrer">Facebook: Dương Minh Thơ</a></p>
+        <p><a href="tel:0945657611">SĐT / Zalo: 0945657611</a></p>
+      </div>
     </>
   );
 }

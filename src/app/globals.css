@@ -616,6 +616,35 @@ h2 span {
   }
 }
 
+/* ===== Liên hệ hỗ trợ ===== */
+.contact-support {
+  margin-top: 28px;
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+}
+.contact-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  font-weight: 800;
+  margin: 0 0 10px;
+}
+.contact-support p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+.contact-support a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.contact-support a:hover {
+  color: var(--accent2);
+}
+
 /* ===================================================================
    TRANG ĐĂNG KÝ + THANH TOÁN + ADMIN
    =================================================================== */
