@@ -163,8 +163,8 @@ export default function Home() {
                     className="speaker-avatar"
                     src={sp.photo}
                     alt={sp.name}
-                    width={116}
-                    height={116}
+                    width={256}
+                    height={256}
                   />
                   <div className="speaker-info">
                     <h3>{sp.name}</h3>

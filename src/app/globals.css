@@ -484,8 +484,8 @@ h2 span {
 }
 .speaker-avatar {
   flex-shrink: 0;
-  width: 96px;
-  height: 96px;
+  width: 128px;
+  height: 128px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.18);
