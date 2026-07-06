@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { workshop } from "@/config/workshop";
+import { syncToSheet } from "@/lib/google-sheet";
 
 export const runtime = "nodejs";
 
@@ -76,6 +77,18 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
+
+    syncToSheet({
+      action: "new",
+      order_code,
+      full_name: full_name!,
+      phone: phone!,
+      email,
+      social,
+      note,
+      amount: workshop.ticket.amount,
+      created_at: new Date().toISOString(),
+    });
 
     return NextResponse.json({ order_code });
   } catch (e) {

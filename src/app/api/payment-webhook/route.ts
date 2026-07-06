@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { workshop } from "@/config/workshop";
 import { normalizeText } from "@/lib/payment";
+import { syncToSheet } from "@/lib/google-sheet";
 
 export const runtime = "nodejs";
 
@@ -120,6 +121,13 @@ export async function POST(req: NextRequest) {
       console.error("webhook update error:", updErr);
       return NextResponse.json({ error: "update failed" }, { status: 500 });
     }
+
+    syncToSheet({
+      action: "paid",
+      order_code: orderCode,
+      paid_amount: transferAmount,
+      paid_at: new Date().toISOString(),
+    });
 
     console.log("Webhook: xác nhận thanh toán thành công:", orderCode);
     return NextResponse.json({ success: true });
