@@ -97,10 +97,10 @@ export default function DangKyForm() {
               <input type="text" value={workshop.ticket.name} readOnly />
             </label>
             <label className="reg-note">
-              Ghi chú
+              Đặt câu hỏi
               <textarea
                 name="note"
-                placeholder="Bạn quan tâm điều gì? (quay dựng, script, AI, định hướng nghề...)"
+                placeholder="Bạn muốn hỏi gì tại buổi chia sẻ? (quay dựng, script, AI, định hướng nghề...)"
               />
             </label>
 

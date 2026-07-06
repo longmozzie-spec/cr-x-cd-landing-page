@@ -15,7 +15,7 @@ function toCsv(rows: Registration[]): string {
     "Email",
     "FB/Zalo",
     "Gói",
-    "Ghi chú",
+    "Câu hỏi",
     "Số tiền",
     "Trạng thái",
     "Đã trả",
