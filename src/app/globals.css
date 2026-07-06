@@ -546,6 +546,17 @@ h2 span {
 
 /* ===== Mobile ===== */
 @media (max-width: 900px) {
+  .slides {
+    scroll-snap-type: y proximity;
+  }
+  .slide {
+    scroll-snap-align: start;
+    min-height: auto;
+    padding: 94px 20px 48px;
+  }
+  .slide.hero {
+    min-height: 100svh;
+  }
   .topbar {
     padding: 0 18px;
     height: 72px;
@@ -559,10 +570,6 @@ h2 span {
   }
   .nav-cta {
     padding: 10px 13px;
-  }
-  .slide {
-    padding: 94px 20px 48px;
-    min-height: 100svh;
   }
   .two-col,
   .reverse {
