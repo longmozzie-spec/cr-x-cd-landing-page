@@ -1,8 +1,10 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const FROM_EMAIL = process.env.RESEND_FROM_EMAIL || "workshop@crstudio.vn";
+let _resend: Resend | null = null;
+function getResend() {
+  if (!_resend) _resend = new Resend(process.env.RESEND_API_KEY);
+  return _resend;
+}
 
 export async function sendConfirmationEmail({
   to,
@@ -57,8 +59,8 @@ export async function sendConfirmationEmail({
   `.trim();
 
   try {
-    await resend.emails.send({
-      from: `CD Media × CR Studio <${FROM_EMAIL}>`,
+    await getResend().emails.send({
+      from: `CD Media × CR Studio <${process.env.RESEND_FROM_EMAIL || "workshop@crstudio.vn"}>`,
       to,
       subject,
       html,
