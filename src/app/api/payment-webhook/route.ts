@@ -3,6 +3,7 @@ import { getSupabaseAdmin } from "@/lib/supabase";
 import { workshop } from "@/config/workshop";
 import { normalizeText } from "@/lib/payment";
 import { syncToSheet } from "@/lib/google-sheet";
+import { sendConfirmationEmail } from "@/lib/send-confirmation-email";
 
 export const runtime = "nodejs";
 
@@ -78,7 +79,7 @@ export async function POST(req: NextRequest) {
     // 5) Tìm đơn theo mã
     const { data: order, error: findErr } = await supabase
       .from("registrations")
-      .select("id, amount, status")
+      .select("id, amount, status, email, full_name")
       .eq("order_code", orderCode)
       .maybeSingle();
 
@@ -128,6 +129,14 @@ export async function POST(req: NextRequest) {
       paid_amount: transferAmount,
       paid_at: new Date().toISOString(),
     });
+
+    // Gửi email xác nhận nếu có email
+    if (order.email) {
+      sendConfirmationEmail({
+        to: order.email,
+        fullName: order.full_name,
+      });
+    }
 
     console.log("Webhook: xác nhận thanh toán thành công:", orderCode);
     return NextResponse.json({ success: true });
