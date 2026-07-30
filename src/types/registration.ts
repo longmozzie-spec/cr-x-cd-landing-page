@@ -14,6 +14,7 @@ export interface Registration {
   paid_amount: number | null;
   paid_at: string | null;
   bank_txn_id: string | null;
+  checked_in_at: string | null;
   created_at: string;
 }
 

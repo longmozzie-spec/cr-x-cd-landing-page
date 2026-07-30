@@ -9,9 +9,11 @@ function getResend() {
 export async function sendConfirmationEmail({
   to,
   fullName,
+  orderCode,
 }: {
   to: string;
   fullName: string;
+  orderCode: string;
 }) {
   if (!process.env.RESEND_API_KEY) {
     console.warn("RESEND_API_KEY chưa cấu hình, bỏ qua gửi mail.");
@@ -45,6 +47,10 @@ export async function sendConfirmationEmail({
 
   <h3 style="margin-top: 28px;">✅ Xác nhận vé tham dự</h3>
   <p>Vé: 699.000đ — đăng ký của bạn đã được ghi nhận thành công. Thông tin vé điện tử / mã check-in (nếu có) sẽ được gửi riêng trước ngày sự kiện.</p>
+
+  <div style="text-align: center; margin: 24px 0;">
+    <a href="https://workshop.crstudio.vn/ve/${orderCode}" style="display: inline-block; background: #ff2b2b; color: #fff; font-weight: 700; padding: 14px 32px; border-radius: 999px; text-decoration: none; font-size: 16px;">Xem vé của bạn</a>
+  </div>
 
   <p>Nếu có bất kỳ thắc mắc nào, bạn có thể phản hồi trực tiếp email này hoặc liên hệ qua số điện thoại bên dưới, chúng tôi luôn sẵn sàng hỗ trợ.</p>
 

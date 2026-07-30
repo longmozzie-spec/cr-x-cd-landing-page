@@ -135,6 +135,7 @@ export async function POST(req: NextRequest) {
       sendConfirmationEmail({
         to: order.email,
         fullName: order.full_name,
+        orderCode,
       });
     }
 
