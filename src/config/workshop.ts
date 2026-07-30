@@ -30,7 +30,7 @@ export const workshop = {
   // amount tính bằng VNĐ. Webhook sẽ đối chiếu số tiền này.
   ticket: {
     name: "Vé tham dự buổi chia sẻ",
-    amount: 2000,
+    amount: 699000,
     perks: [
       "Trọn buổi chia sẻ offline + Q&A",
       "Networking cùng CD Media & CR Media",
