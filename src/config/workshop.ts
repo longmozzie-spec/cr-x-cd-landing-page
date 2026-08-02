@@ -18,12 +18,12 @@ export const workshop = {
   // --- Thông tin sự kiện ---
   event: {
     date: "23/08 (Chủ Nhật)",
-    time: "8h30 – 12h00",
+    time: "8h00 – 12h00",
     location: "TP.HCM",
     capacity: "Giới hạn 500 chỗ",
     format: "Offline · Talk show + Q&A",
     // Mốc đếm ngược (ISO, giờ VN +07:00)
-    startsAt: "2026-08-23T08:30:00+07:00",
+    startsAt: "2026-08-23T08:00:00+07:00",
   },
 
   // --- Gói đăng ký (một gói duy nhất) ---

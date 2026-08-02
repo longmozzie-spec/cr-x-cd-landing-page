@@ -41,7 +41,7 @@ export async function sendConfirmationEmail({
   <h3 style="margin-top: 28px;">📍 Thời gian &amp; địa điểm</h3>
   <p>
     Chủ Nhật, ngày 23/08/2026<br>
-    8h30 – 12h00 (đón khách từ 8h00)<br>
+    8h00 – 12h00<br>
     Địa điểm: Tại TP. Hồ Chí Minh.
   </p>
 
