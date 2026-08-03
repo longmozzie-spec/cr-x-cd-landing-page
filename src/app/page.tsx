@@ -190,10 +190,10 @@ export default function Home() {
               </p>
             </div>
             <div className="timeline reveal delay-1">
-              <div><time>9h00</time><p>Check-in & networking</p></div>
-              <div><time>9h10</time><p>Show số liệu + Talk show Hành trình, Sản xuất</p></div>
-              <div><time>10h15</time><p>Giải lao — Teabreak & kết nối</p></div>
-              <div><time>10h45</time><p>AI & xu hướng tương lai + Q&A + Định hướng</p></div>
+              <div><time>8h00</time><p>Check-in & networking</p></div>
+              <div><time>8h40</time><p>Show số liệu + Talk show Hành trình, Sản xuất</p></div>
+              <div><time>9h45</time><p>Giải lao — Teabreak & kết nối</p></div>
+              <div><time>10h15</time><p>AI & xu hướng tương lai + Q&A + Định hướng</p></div>
             </div>
           </div>
         </section>
